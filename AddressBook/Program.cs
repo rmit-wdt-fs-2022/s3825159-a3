@@ -1,6 +1,8 @@
 using AddressBook.Data;
 using AddressBook.Models.DataManager;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +14,20 @@ builder.Services.AddDbContext<AddressBookContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(AddressBookContext)));
 
-    // Enable lazy loading. We do not need that
+    // Enable lazy loading.
     options.UseLazyLoadingProxies();
 });
 
 builder.Services.AddScoped<AddressesManager>();
 builder.Services.AddScoped<ContactsManager>();
+
+// Configure the default client.
+builder.Services.AddHttpClient(Options.DefaultName, client =>
+{
+    client.BaseAddress = new Uri("http://localhost:7029");
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+});
+
 
 var app = builder.Build();
 
