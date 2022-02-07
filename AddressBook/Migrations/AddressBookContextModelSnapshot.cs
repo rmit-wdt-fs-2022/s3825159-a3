@@ -91,26 +91,7 @@ namespace AddressBook.Migrations
 
                     b.HasKey("ContactID");
 
-                    b.HasIndex("HomeAddressID");
-
-                    b.HasIndex("WorkAddressID");
-
                     b.ToTable("Contacts");
-                });
-
-            modelBuilder.Entity("AddressBook.Models.Contacts", b =>
-                {
-                    b.HasOne("AddressBook.Models.Addresses", "HomeAddress")
-                        .WithMany()
-                        .HasForeignKey("HomeAddressID");
-
-                    b.HasOne("AddressBook.Models.Addresses", "WorkAddress")
-                        .WithMany()
-                        .HasForeignKey("WorkAddressID");
-
-                    b.Navigation("HomeAddress");
-
-                    b.Navigation("WorkAddress");
                 });
 #pragma warning restore 612, 618
         }

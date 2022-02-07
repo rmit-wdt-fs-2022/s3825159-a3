@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AddressBook.Models.Contacts>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create a New Contact</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobilePhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeAddressID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkAddressID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobilePhone)
+            </td>
+            <td>
+                    @if((item.HomeAddressID == null))
+                    {
+                        <p>N/A</p>
+                    } else
+                    {
+                       @Html.DisplayFor(modelItem => item.HomeAddressID) 
+                    }
+                </td>
+            <td>
+                @if((item.WorkAddressID == null))
+                    {
+                        <p>N/A</p>
+                    } else
+                    {
+                       @Html.DisplayFor(modelItem => item.WorkAddressID) 
+                    }
+            </td>
+            <td>
+                <a class="btn btn-lg btn-success" asp-action="Edit" asp-route-id="@item.ContactID">Edit</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

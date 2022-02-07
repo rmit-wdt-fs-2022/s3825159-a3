@@ -29,13 +29,11 @@ namespace AddressBook.Models
         public string? MobilePhone { get; set; }
 
         
-        [ForeignKey("HomeAdressID")]
+        [ForeignKey("AddressID")]
         public int? HomeAddressID { get; set; }
-        public virtual Addresses? HomeAddress { get; set; }
 
-        [ForeignKey("WorkAdressID")]
+        [ForeignKey("AddressID")]
         public int? WorkAddressID { get; set; }
-        public virtual Addresses? WorkAddress { get; set; }
 
     }
 }
