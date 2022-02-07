@@ -3,7 +3,9 @@
     "",
     "\\AddressBook",
     "\\AddressBook\\Controllers",
-    "\\AddressBook\\Models"
+    "\\AddressBook\\Models",
+    "\\AddressBook\\Views",
+    "\\AddressBook\\Views\\Addresses"
   ],
   "SelectedNode": "\\AddressBook.sln",
   "PreviewInSolutionExplorer": false

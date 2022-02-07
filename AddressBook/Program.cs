@@ -1,4 +1,5 @@
 using AddressBook.Data;
+using AddressBook.Models.DataManager;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<AddressBookContext>(options =>
     // Enable lazy loading. We do not need that
     options.UseLazyLoadingProxies();
 });
+
+builder.Services.AddScoped<AddressesManager>();
+builder.Services.AddScoped<ContactsManager>();
 
 var app = builder.Build();
 
