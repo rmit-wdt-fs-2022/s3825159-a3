@@ -1,7 +1,19 @@
+using AddressBook.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add services to the container.
+builder.Services.AddDbContext<AddressBookContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(AddressBookContext)));
+
+    // Enable lazy loading. We do not need that
+    options.UseLazyLoadingProxies();
+});
 
 var app = builder.Build();
 
